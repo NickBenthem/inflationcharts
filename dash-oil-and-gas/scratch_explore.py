@@ -28,13 +28,14 @@ df_series.to_sql('series', conn)
 df_items.to_sql('items', conn)
 
 test =  pd.read_sql("""
-                        SELECT current_data.value, items.item_name, series.begin_year || '-' || substr(series.begin_period,2,4) as date
+                        SELECT current_data.value, items.item_name, current_data.year || '-' || substr(current_data.period,2,4) as date
                          FROM current_data
                                     LEFT JOIN series on series.series_id = current_data.series_id
                                     LEFT JOIN items on series.item_code = items.item_code
                     """
                     , conn)
-
+test['date'] = pd.to_datetime(test['date'].astype(str),errors='coerce' )
+test.sort_values(by=["date"], ascending=True)
 test.to_csv(r"C:\git\bls\dash-inflation\bls_joined_data.csv",index=False)
 
 print(f"runtime is {timeit.default_timer() - starttime}")
