@@ -1,10 +1,11 @@
+import timeit
+starttime = timeit.default_timer()
+
 import pandas as pd
 import sqlite3 as sql
 import sqlalchemy as sqlalchemy
-
-
 # https://www.bls.gov/cpi/data.htm
-df_explore = pd.read_csv(r"C:\git\bls\data\cu\cu.data.0.Current", sep="\t",nrows=100) # Adding the nrows to go faster. This is big and Pycharm doesn't like it.
+df_explore = pd.read_csv(r"C:\git\bls\data\cu\cu.data.0.Current", sep="\t") # Adding the nrows to go faster. This is big and Pycharm doesn't like it.
 df_series = pd.read_csv(r"C:\git\bls\data\cu\cu.series", sep="\t")
 
 df_obj = df_series.select_dtypes(['object'])
@@ -29,6 +30,7 @@ df_series.to_sql('series',conn)
 test =  pd.read_sql("""
                         SELECT * FROM current_data
                                     LEFT JOIN series on series.series_id = current_data.series_id
-                                    limit 100
                     """
                     , conn)
+
+print(f"runtime is {timeit.default_timer() - starttime}")
