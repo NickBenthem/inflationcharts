@@ -29,9 +29,9 @@ app.layout = html.Div(
                  children=[
                     html.Div(className='four columns div-user-controls',
                              children=[
-                                 html.H2('DASH - STOCK PRICES'),
-                                 html.P('Visualising time series with Plotly - Dash.'),
-                                 html.P('Pick one or more stocks from the dropdown below.'),
+                                 html.H2('Dash - Inflation Prices'),
+                                 html.P('''Prices have gotten weird recently - but is inflation really a problem?'''),
+                                 html.P('''Pick one or more commodities from the dropdown below.'''),
                                  html.Div(
                                      className='div-for-dropdown',
                                      children=[
@@ -39,7 +39,7 @@ app.layout = html.Div(
                                                       options=get_options(df['item_name'].unique()),
                                                       multi=True,
                                                       value=[df['item_name'].sort_values()[0]],
-                                                      style={'backgroundColor': '#f2f2f2'},
+                                                      style={'backgroundColor': '#FFFFFF'},
                                                       className='stockselector'
                                                       ),
                                      ],
@@ -54,11 +54,7 @@ app.layout = html.Div(
         ]
 
 )
-children = [
-    html.H2('Dash - Inflation Prices'),
-    html.P('''Prices have gotten weird recently - but is inflation really a problem?'''),
-    html.P('''Pick one or more commodities from the dropdown below.''')
-]
+
 
 dcc.Graph(id='timeseries',
           config={'displayModeBar': False},
