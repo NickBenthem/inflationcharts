@@ -54,8 +54,8 @@ app.layout = html.Div(
 )
 children = [
     html.H2('Dash - Inflation Prices'),
-    html.P('''Visualising time series with Plotly - Dash'''),
-    html.P('''Pick one or more stocks from the dropdown below.''')
+    html.P('''Prices have gotten weird recently - but is inflation really a problem?'''),
+    html.P('''Pick one or more commodities from the dropdown below.''')
 ]
 
 dcc.Graph(id='timeseries',
