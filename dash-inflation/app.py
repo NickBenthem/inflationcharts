@@ -35,13 +35,15 @@ app.layout = html.Div(
                                  html.Div(
                                      className='div-for-dropdown',
                                      children=[
-                                         dcc.Dropdown(id='stockselector', options=get_options(df['item_name'].unique()),
-                                                      multi=True, value=[df['item_name'].sort_values()[0]],
-                                                      style={'backgroundColor': '#1E1E1E'},
+                                         dcc.Dropdown(id='stockselector',
+                                                      options=get_options(df['item_name'].unique()),
+                                                      multi=True,
+                                                      value=[df['item_name'].sort_values()[0]],
+                                                      style={'backgroundColor': '#f2f2f2'},
                                                       className='stockselector'
                                                       ),
                                      ],
-                                     style={'color': '#1E1E1E'})
+                                     style={'color': '#f2f2f2'})
                                 ]
                              ),
                     html.Div(className='eight columns div-for-charts bg-grey',
